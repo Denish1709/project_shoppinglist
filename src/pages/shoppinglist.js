@@ -79,9 +79,7 @@ export default function ShoppingLists() {
       <Card>
         <Card.Body>
           <Card.Title className="text-center text-success">
-            <h2>
-               Shopping List
-            </h2>
+            <h2>Shopping List</h2>
           </Card.Title>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <>
@@ -97,14 +95,16 @@ export default function ShoppingLists() {
               <MyVerticallyCenteredModal
                 show={modalShow}
                 onHide={() => {
-                    setModalShow(false);
-                    // retrieve the updated shopping list from local storage to state
-                    const shoppingList = JSON.parse(localStorage.getItem("shoppingList"));
-                    if (shoppingList) {
-                      setList(shoppingList);
-                    }
+                  setModalShow(false);
+                  // retrieve the updated shopping list from local storage to state
+                  const shoppingList = JSON.parse(
+                    localStorage.getItem("shoppingList")
+                  );
+                  if (shoppingList) {
+                    setList(shoppingList);
+                  }
                 }}
-                />
+              />
             </>
           </div>
           <Form.Select
@@ -114,15 +114,15 @@ export default function ShoppingLists() {
               setFilter(event.target.value);
             }}
           >
-              <option value="">All Category</option>
-              <option value="Vegetables">Vegetables</option>
-              <option value="Fruits">Fruits</option>
-              <option value="Can-Food">Can Foods</option>
-              <option value="Wet-Items">Wet Items</option>
-              <option value="Dry-Items">Dry Items</option>
-              <option value="Snacks">Snacks</option>
-              <option value="Household">Household Supplies</option>
-              <option value="Others">Others</option>
+            <option value="">All Category</option>
+            <option value="Vegetables">Vegetables</option>
+            <option value="Fruits">Fruits</option>
+            <option value="Can-Food">Can Foods</option>
+            <option value="Wet-Items">Wet Items</option>
+            <option value="Dry-Items">Dry Items</option>
+            <option value="Snacks">Snacks</option>
+            <option value="Household">Household Supplies</option>
+            <option value="Others">Others</option>
           </Form.Select>
           <Table striped bordered hover>
             <thead>
@@ -193,17 +193,19 @@ export default function ShoppingLists() {
                         <div className="text-center text-success">{i.item}</div>
                       </td>
                       <td>
-                        <div className="text-center text-success">{i.category}</div>
+                        <div className="text-center text-success">
+                          {i.category}
+                        </div>
                       </td>
                       <td>
-                        <div className="text-center text-success">{i.quantity}</div>
+                        <div className="text-center text-success">
+                          {i.quantity}
+                        </div>
                       </td>
                       <td>
                         <div className="text-center">
                           <>
-                            <Link
-                              to={`/edit/${i.id}`}
-                              className="me-2 fs-5">
+                            <Link to={`/edit/${i.id}`} className="me-2 fs-5">
                               <Button variant="secondary" size="sm">
                                 <AiOutlineEdit />
                               </Button>
@@ -240,11 +242,12 @@ export default function ShoppingLists() {
         </Card.Body>
       </Card>
       <div className="mt-5 text-center">
-      <Link to="/">              
-             <Button variant="success" size="md">
-               <HiArrowNarrowLeft />Back to Home
-             </Button>
-           </Link>
+        <Link to="/">
+          <Button variant="success" size="md">
+            <HiArrowNarrowLeft />
+            Back to Home
+          </Button>
+        </Link>
       </div>
     </div>
   );
@@ -262,7 +265,7 @@ export function MyVerticallyCenteredModal(props) {
     if (shoppingList) {
       setList(shoppingList);
     }
-  }, []);
+  }, [props.show]);
 
   const addShoppingList = () => {
     const newList = [...list];
@@ -293,7 +296,10 @@ export function MyVerticallyCenteredModal(props) {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter" className="text-success">
+        <Modal.Title
+          id="contained-modal-title-vcenter"
+          className="text-success"
+        >
           Add Shopping List
         </Modal.Title>
       </Modal.Header>
